@@ -4,13 +4,14 @@ const mongoose = require('mongoose')
 const app = express()
 const cors = require('cors')
 const indexRoutes = require('./routes/index')
+require('dotenv').config()
 // const path = require('path')
 
 // configuraciones
   // const port = 3000
 app.set('port', process.env.PORT || 3000);
 mongoose.connect(process.env.DB_STRING)
-.then(db=>console.log('connected'))
+.then(db=>console.log('connected to Mongo'))
 .catch(err=>console.log(err))
 
 //middlewares
@@ -30,5 +31,5 @@ app.use('/',indexRoutes);
   //   console.log(`Example app listening at http://localhost:${port}`)
   // })
 app.listen(app.get('port'), () => {
-  console.log(`Example app listening`)
+  console.log(`Server Running`)
 })
