@@ -6,11 +6,15 @@ const Employee = new Schema({
     lastNames:String,
     email: {
         type: String,
-        unique: true
+        unique: true,
+        required: true
     },
     userType:String,
     phone:String,
-    password: String
+    password: {
+        type:String,
+        required: true
+    }
 })
 
 module.exports = mongoose.model('employee', Employee)

@@ -11,7 +11,7 @@ const authController = {
             if(!email || !password){
                 res.status(400).json('Email and password required')
             }
-            let token = await authService.login(req.body)
+            const token = await authService.login(req.body)
             if (token.code == 200){
                 res.status(token.code).json(token)
             }else{

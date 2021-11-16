@@ -7,10 +7,14 @@ const User = new Schema({
     lastNames:String,
     email: {
         type: String,
-        unique: true
+        unique: true,
+        required:true
     },
     phone:String,
-    password: String
+    password: {
+        type:String,
+        required: true
+    }
 })
 
 module.exports = Mongoose.model('users', User)
