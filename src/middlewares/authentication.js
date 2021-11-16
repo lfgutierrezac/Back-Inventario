@@ -7,11 +7,11 @@ const Authenticate = (req, res, next)=>{
     }
 
     try {
-        const decoded = jwt.verify(token, 'my app')
+        const decoded = jwt.verify(token, proccess.env.JWT_SECRET)
         req.user = decoded
         next()
     } catch (error) {
-        res.status(400).json({msg: "invalid token"})
+        res.status(405).json({msg: "invalid token"})
     }
 }
 

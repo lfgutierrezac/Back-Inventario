@@ -12,14 +12,19 @@ const authController = {
                 res.status(400).json('Email and password required')
             }
             const token = await authService.login(req.body)
-            if (token.code == 200){
-                res.status(token.code).json(token)
-            }else{
-                res.send(token)
-            }
+            res.status(token.code).json(token)
         } catch (error) {
-            res.send(error)
+            // res.send(error)
+            res.status(500).json({"error":error})
         }
+        //     if (token.code == 200){
+        //         res.status(token.code).json(token)
+        //     }else{
+        //         res.send(token)
+        //     }
+        // } catch (error) {
+        //     res.send(error)
+        // }
     },
 
     register: async function (req,res){
@@ -29,9 +34,8 @@ const authController = {
         }
         try {
             const user = new User(req.body)
-            const userData = await authService.register(user)
-            res.send(userData)
-            // res.status(user.code).json({"token":user})
+            const token = await authService.register(user)
+            res.status(token.code).json({"token":token})
         } catch (error) {
             res.send(error)
         }
@@ -43,8 +47,8 @@ const authController = {
         }
         try {
             const employee = new Employee(req.body)
-            const employeeData = await authService.register(employee)
-            res.send(employeeData)
+            const token = await authService.register(employee)
+            res.status(token.code).json({"token":token})
         } catch (error) {
             res.send(error)
         }
