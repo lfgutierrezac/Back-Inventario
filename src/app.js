@@ -3,7 +3,7 @@ const morgan = require('morgan')
 const mongoose = require('mongoose')
 const app = express()
 const cors = require('cors')
-const indexRoutes = require('./routes/index')
+const authRoutes = require('./routes/auth.routes')
 require('dotenv').config()
 // const path = require('path')
 
@@ -23,7 +23,7 @@ app.use(cors())
 // app.get('/', (req, res) => {
 //   res.send('Hello World!')
 // })
-app.use('/',indexRoutes);
+app.use('/',authRoutes);
 
 
 // inicio servidor
