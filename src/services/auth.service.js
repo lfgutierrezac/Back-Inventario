@@ -10,13 +10,12 @@ const authService = {
         })
     },
     login: async function(data){
-        try {
-            
+        try {           
             const {email, password} = data;
             // let pass = aes.encrypt(password);
             let userExists = await User.findOne({email: email}, 'storeName names lastNames email phone password').exec()
             if (await bcrypt.compare(password, userExists.password).then(res=>res)){
-                let token = await this.signToken(userExists.id)
+                const token = await this.signToken(userExists.id)
                 return{
                     user: userExists,
                     code : 200,
@@ -28,11 +27,9 @@ const authService = {
                     error: true,
                     msg: "Incorrect data"
                 }
-            }
-            
-            
+            }           
         } catch (error) {
-            return error;
+            return error
         }
     },
     register: async function(userData){
