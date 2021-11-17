@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken')
 // const aes = require('../helpers/aes.chiper')
 const User = require('../models/user')
+const Employee = require('../models/employee')
 const bcrypt = require('bcrypt')
 
 const authService = {
@@ -12,8 +13,11 @@ const authService = {
     login: async function(data){
         try {           
             const {email, password} = data;
-            // let pass = aes.encrypt(password);
+            // Vefificar si es User o Employee
             let userExists = await User.findOne({email: email}, 'storeName names lastNames email phone password').exec()
+            if (!userExists) {
+                userExists = await Employee.findOne({email: email}, 'names lastNames email userType phone password').exec()
+            }
             if (await bcrypt.compare(password, userExists.password).then(res=>res)){
                 const token = await this.signToken(userExists.id)
                 return{
