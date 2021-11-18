@@ -12,6 +12,6 @@ router.post('/register', authController.register)
 router.post('/login', authController.login)
 
 // Register User
-router.post('/registerEmployee', authController.registerEmployee)
+router.post('/createuser', authController.registerEmployee)
 
 module.exports = router;
