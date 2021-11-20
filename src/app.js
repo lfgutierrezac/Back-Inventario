@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const app = express()
 const cors = require('cors')
 const authRoutes = require('./routes/auth.routes')
+const clientRoutes = require('./routes/client.routes')
 require('dotenv').config()
 // const path = require('path')
 
@@ -23,7 +24,8 @@ app.use(cors())
 // app.get('/', (req, res) => {
 //   res.send('Hello World!')
 // })
-app.use('/',authRoutes);
+app.use('/', authRoutes);
+app.use('/', clientRoutes);
 
 
 // inicio servidor
