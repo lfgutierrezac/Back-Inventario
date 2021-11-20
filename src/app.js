@@ -5,6 +5,7 @@ const app = express()
 const cors = require('cors')
 const authRoutes = require('./routes/auth.routes')
 const clientRoutes = require('./routes/client.routes')
+const providerRoutes = require('./routes/provider.routes')
 require('dotenv').config()
 // const path = require('path')
 
@@ -26,6 +27,7 @@ app.use(cors())
 // })
 app.use('/', authRoutes);
 app.use('/', clientRoutes);
+app.use('/', providerRoutes)
 
 
 // inicio servidor
