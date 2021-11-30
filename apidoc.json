@@ -1,0 +1,8 @@
+{
+    "apidoc":{
+        "title": "Documentación API Inventario"
+    },
+    "name": "Backend App Inventario",
+    "version": "0.0.1",
+    "description": "Documentación en la línea de los endpoints del backend"
+  }
