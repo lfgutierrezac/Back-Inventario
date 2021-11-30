@@ -26,7 +26,6 @@ const authController = {
         //     res.send(error)
         // }
     },
-
     register: async function (req,res){
         const errors = validationResult(req)
         if (!errors.isEmpty()) {

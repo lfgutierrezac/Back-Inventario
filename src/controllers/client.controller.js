@@ -9,14 +9,14 @@ const clientController = {
     } catch (error) {
         res.send(error)
     }
-},
-getClient:async function (req,res){
-    try {
-        const client = await Client.find();
-        res.send(client)
-    } catch (error) {
-        res.send(error)
+    },
+    getClient:async function (req,res){
+        try {
+            const client = await Client.find();
+            res.send(client)
+        } catch (error) {
+            res.send(error)
+        }
     }
-}
 }
 module.exports = clientController

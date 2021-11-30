@@ -9,14 +9,14 @@ const providerController = {
     } catch (error) {
         res.send(error)
     }
-},
-getProvider:async function (req,res){
-    try {
-        const provider = await Provider.find();
-        res.send(provider)
-    } catch (error) {
-        res.send(error)
+    },
+    getProvider:async function (req,res){
+        try {
+            const provider = await Provider.find();
+            res.send(provider)
+        } catch (error) {
+            res.send(error)
+        }
     }
-}
 }
 module.exports = providerController
