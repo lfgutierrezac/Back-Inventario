@@ -2,12 +2,12 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const Product = new Schema({
-    barcode: Number,
+    barcode: String,
     name: String,
-    cost: Number,
-    units: Number,
-    price: Number,
-    discount: Number,
+    cost: String,
+    units: String,
+    price: String,
+    discount: String,
     categoty: String,
     provider: String,
     model: String,
