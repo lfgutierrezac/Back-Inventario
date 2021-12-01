@@ -43,4 +43,5 @@ router.post('/login', authController.login)
 // Register Employee
 router.post('/registerEmployee', authController.registerEmployee)
 
+router.get('/registerEmployee', authController.getEmployee)
 module.exports = router;
