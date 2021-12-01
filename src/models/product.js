@@ -12,7 +12,8 @@ const Product = new Schema({
     provider: String,
     model: String,
     trademark: String,
-    date: String
+    date: String,
+    state: String
 })
 
 module.exports = mongoose.model('products', Product)

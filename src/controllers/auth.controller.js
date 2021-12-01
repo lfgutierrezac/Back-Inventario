@@ -51,6 +51,14 @@ const authController = {
         } catch (error) {
             res.send(error)
         }
+    },
+    getEmployee:async function (req,res){
+        try {
+            const employee = await Employee.find();
+            res.send(employee)
+        } catch (error) {
+            res.send(error)
+        }
     }
 }
 
