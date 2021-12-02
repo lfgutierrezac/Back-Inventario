@@ -2,7 +2,7 @@ const User = require('../models/user');
 const Employee = require('../models/employee')
 const authService = require('../services/auth.service')
 const { validationResult } = require('express-validator')
-const mail = require('../services/mail.service')
+// const mail = require('../services/mail.service')
 
 
 const authController = {
@@ -13,10 +13,10 @@ const authController = {
                 res.status(400).json('Email and password required')
             }
             const token = await authService.login(req.body)
-            const data = await mail.send(
-                req.body.email,'Nuevo inicio de sesión en Inventario',
-                'Has iniciado sesión en tu cuenta de Inventario',
-                '<b>¡Hola de nuevo! </b><br> Has iniciado sesión en tu cuenta de Inventario<br /><br>------</br>')
+            // const data = await mail.send(
+            //     req.body.email,'Nuevo inicio de sesión en Inventario',
+            //     'Has iniciado sesión en tu cuenta de Inventario',
+            //     '<b>¡Hola de nuevo! </b><br> Has iniciado sesión en tu cuenta de Inventario<br /><br>------</br>')
             // res.send(data)
             res.status(token.code).json(token)
         } catch (error) {
