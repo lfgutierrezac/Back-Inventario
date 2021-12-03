@@ -30,7 +30,7 @@ app.use(cors())
 // app.get('/', (req, res) => {
 //   res.send('Hello World!')
 // })
-app.use('/auth', authRoutes);
+app.use('/', authRoutes);
 app.use('/', clientRoutes);
 app.use('/', providerRoutes);
 app.use('/', productRoutes);
