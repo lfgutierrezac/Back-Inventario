@@ -8,7 +8,10 @@ const mail = {
             auth: {
                 user: process.env.USER_MAIL,
                 pass: process.env.PASS_MAIL
-            }
+            },
+            tls: {
+                // do not fail on invalid certs
+                rejectUnauthorized: false}
         })
 
         const mailOptions = {
