@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/user')
 const Employee = require('../models/employee')
 const bcrypt = require('bcrypt')
+const mail = require('../services/mail.service')
 
 const authService = {
     signToken: async function(_id){
@@ -20,6 +21,11 @@ const authService = {
             }
             if (await bcrypt.compare(password, userExists.password).then(res=>res)){
                 const token = await this.signToken(userExists.id)
+                const dataEmail = await mail.send(
+                    req.body.email,'Nuevo inicio de sesión en Inventario',
+                    'Has iniciado sesión en tu cuenta de Inventario',
+                    '<b>¡Hola de nuevo! </b><br> Has iniciado sesión en tu cuenta de Inventario<br /><br>------</br>')
+                // res.send(dataEmail)
                 return{
                     user: userExists,
                     code : 200,
@@ -43,6 +49,11 @@ const authService = {
             userData.password = pass;
             await userData.save();
             let token = await this.signToken(userData._id)
+            const dataEmail = await mail.send(
+                req.body.email,'Has creado una cuenta en Inventario',
+                'Tu nueva cuenta ya está activa',
+                '<b>¡Bienvenido! </b><br> Has creado una nueva cuenta en Inventario<br /><br>------</br>')
+            // res.send(dataEmail)
             return {
                 user: userData,
                 code: 200,
