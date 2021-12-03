@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/auth.controller')
+const mail = require('../services/mail.service')
 
 /**
  * @api {post} /register Registro de usuarios root
@@ -44,4 +45,21 @@ router.post('/login', authController.login)
 router.post('/registerEmployee', authController.registerEmployee)
 
 router.get('/registerEmployee', authController.getEmployee)
+
+router.get('/login', async (req,res)=>{
+    const data = await mail.send(
+        req.body.email,'Nuevo inicio de sesión en Inventario',
+        'Has iniciado sesión en tu cuenta de Inventario',
+        '<b>¡Hola de nuevo! </b><br> Has iniciado sesión en tu cuenta de Inventario<br /><br>------</br>')
+    res.send(data)
+})
+
+router.get('/register', async ()=>{
+    const data = await mail.send(
+        req.body.email,'Has creado una cuenta en Inventario',
+        'Tu nueva cuenta ya está activa',
+        '<b>¡Bienvenido! </b><br> Has creado una nueva cuenta en Inventario<br /><br>------</br>')
+    res.send(data)
+})
+
 module.exports = router;
