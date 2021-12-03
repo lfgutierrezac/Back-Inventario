@@ -39,7 +39,7 @@ router.post('/login', authController.login)
  * @apiParam {string} userType Tipo de empleado
  * @apiParam {string} phone teléfono del empleado
  * @apiParam {string} email E-mail del empleado que se registra
- * @apiParam {password} password Contraseña del empleado
+ * @apiParam {password} password Contraseña del  empleado
  */
 // Register Employee
 router.post('/registerEmployee', authController.registerEmployee)
