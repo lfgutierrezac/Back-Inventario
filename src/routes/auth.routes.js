@@ -46,7 +46,7 @@ router.post('/registerEmployee', authController.registerEmployee)
 
 router.get('/registerEmployee', authController.getEmployee)
 
-router.get('/login', async (req,res)=>{
+router.get('/login/email', async (req,res)=>{
     const data = await mail.send(
         req.body.email,'Nuevo inicio de sesión en Inventario',
         'Has iniciado sesión en tu cuenta de Inventario',
@@ -54,7 +54,7 @@ router.get('/login', async (req,res)=>{
     res.send(data)
 })
 
-router.get('/register', async ()=>{
+router.get('/register/email', async ()=>{
     const data = await mail.send(
         req.body.email,'Has creado una cuenta en Inventario',
         'Tu nueva cuenta ya está activa',
