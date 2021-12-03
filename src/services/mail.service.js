@@ -1,8 +1,8 @@
-const nodemaider = require('nodemailer')
+const nodemailer = require('nodemailer')
 
 const mail = {
     send: async (toMail, subjectMail, textMail, htmlMail) => {
-        const transporter = nodemaider.createTransport({
+        const transporter = nodemailer.createTransport({
             host: process.env.HOST_MAIL,
             port: process.env.PORT_MAIL,
             auth: {

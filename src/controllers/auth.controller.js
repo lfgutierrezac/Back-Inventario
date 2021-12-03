@@ -13,7 +13,7 @@ const authController = {
                 res.status(400).json('Email and password required')
             }
             const token = await authService.login(req.body)
-            const dataEmail = await mail.send(
+            await mail.send(
                 req.body.email,'Nuevo inicio de sesión en Inventario',
                 'Has iniciado sesión en tu cuenta de Inventario',
                 '<b>¡Hola de nuevo! </b><br> Has iniciado sesión en tu cuenta de Inventario<br /><br>------</br>')
