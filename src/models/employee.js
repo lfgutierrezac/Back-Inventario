@@ -16,5 +16,5 @@ const Employee = new Schema({
         required: true
     }
 })
-
+ 
 module.exports = mongoose.model('employee', Employee)

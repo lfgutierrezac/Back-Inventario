@@ -16,5 +16,5 @@ const User = new Schema({
         required: true
     }
 })
-
+ 
 module.exports = Mongoose.model('users', User)
