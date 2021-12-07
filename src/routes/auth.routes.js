@@ -54,24 +54,24 @@ router.get('/registerEmployee', authController.getEmployee)
 //     res.send(data)
 // })
 
-router.get('/login/email', async function (req,res){
-    try {
-        const data = await mail.send(
-            req.body.email,'Nuevo inicio de sesión en Inventario',
-            'Has iniciado sesión en tu cuenta de Inventario',
-            '<b>¡Hola de nuevo! </b><br> Has iniciado sesión en tu cuenta de Inventario<br /><br>------</br>')
-            res.send(data)
-    } catch (error) {
-        res.status(500).json({"error":error})
-    }
-})
+// router.get('/login/email', async function (req,res){
+//     try {
+//         const data = await mail.send(
+//             req.body.email,'Nuevo inicio de sesión en Inventario',
+//             'Has iniciado sesión en tu cuenta de Inventario',
+//             '<b>¡Hola de nuevo! </b><br> Has iniciado sesión en tu cuenta de Inventario<br /><br>------</br>')
+//             res.send(data)
+//     } catch (error) {
+//         res.status(500).json({"error":error})
+//     }
+// })
 
-router.get('/register/email', async (req,res)=>{
-    const data = await mail.send(
-        req.body.email,'Has creado una cuenta en Inventario',
-        'Tu nueva cuenta ya está activa',
-        '<b>¡Bienvenido! </b><br> Has creado una nueva cuenta en Inventario<br /><br>------</br>')
-    res.send(data)
-})
+// router.get('/register/email', async (req,res)=>{
+//     const data = await mail.send(
+//         req.body.email,'Has creado una cuenta en Inventario',
+//         'Tu nueva cuenta ya está activa',
+//         '<b>¡Bienvenido! </b><br> Has creado una nueva cuenta en Inventario<br /><br>------</br>')
+//     res.send(data)
+// })
 
 module.exports = router;

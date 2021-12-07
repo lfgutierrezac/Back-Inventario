@@ -13,7 +13,11 @@ const authController = {
             }
             const token = await authService.login(req.body)
             res.status(token.code).json({"token":token})
-
+            const dataEmail = await mail.send(
+                email,'Nuevo inicio de sesión en InStore',
+                'Has iniciado sesión en tu cuenta de InStore',
+                '<b>¡Hola de nuevo! </b><br> Has iniciado sesión en tu cuenta de InStore<br /><br>------</br>')
+            res.send(dataEmail)
         } catch (error) {
             // res.send(error)
             res.status(500).json({"error":error})
@@ -36,6 +40,11 @@ const authController = {
             const user = new User(req.body)
             const token = await authService.register(user)
             res.status(token.code).json({"token":token})
+            const dataEmail = await mail.send(
+                user.email,'Has creado una cuenta en InStore',
+                'Tu nueva cuenta ya está activa',
+                '<b>¡Bienvenido! </b><br> Has creado una nueva cuenta en InStore<br /><br>------</br>')
+            res.send(dataEmail)
         } catch (error) {
             res.send(error)
         }
@@ -49,6 +58,11 @@ const authController = {
             const employee = new Employee(req.body)
             const token = await authService.register(employee)
             res.status(token.code).json({"token":token})
+            const dataEmail = await mail.send(
+                employee.email,'Nueva cuenta en InStore',
+                'Tu nueva cuenta ya está activa',
+                '<b>¡Bienvenido! </b><br> Han creado una nueva cuenta en InStore para ti<br /><br>------</br>')
+            res.send(dataEmail)
         } catch (error) {
             res.send(error)
         }
