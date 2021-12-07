@@ -2,6 +2,7 @@ const User = require('../models/user');
 const Employee = require('../models/employee')
 const authService = require('../services/auth.service')
 const { validationResult } = require('express-validator')
+const mail = require('../services/mail.service')
 
 const authController = {
     login: async function (req,res){
@@ -12,6 +13,7 @@ const authController = {
             }
             const token = await authService.login(req.body)
             res.status(token.code).json({"token":token})
+
         } catch (error) {
             // res.send(error)
             res.status(500).json({"error":error})
