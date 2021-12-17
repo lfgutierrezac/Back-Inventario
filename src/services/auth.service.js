@@ -3,11 +3,11 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/user')
 const Employee = require('../models/employee')
 const bcrypt = require('bcrypt')
-
+  
 const authService = {
     signToken: async function(_id){
-        return jwt.sign({ _id }, process.env.JWT_SECRET,{
-            expiresIn: 60 * 60 * 24
+        return jwt.sign({_id}, process.env.JWT_SECRET,{
+            expiresIn: 60 * 60 * 24 * 7 
         })
     },
     login: async function(data){
@@ -35,12 +35,12 @@ const authService = {
         } catch (error) {
             return error
         }
-    },
+    }, 
     register: async function(userData){
         try {
             // let pass = aes.encrypt(userData.password);
-            const pass = await bcrypt.hash(userData.password, 10).then(res=>res)
-            userData.password = pass;
+            let hash = await bcrypt.hash(userData.password, 10).then(res=>res)
+            userData.password = hash;
             await userData.save();
             let token = await this.signToken(userData._id)
             return {

@@ -3,7 +3,7 @@ const Employee = require('../models/employee')
 const authService = require('../services/auth.service')
 const { validationResult } = require('express-validator')
 const mail = require('../services/mail.service')
-
+ 
 const authController = {
     login: async function (req,res){
         try {
@@ -12,11 +12,12 @@ const authController = {
                 res.status(400).json('Email and password required')
             }
             const token = await authService.login(req.body)
-            res.status(token.code).json({"token":token})
+            res.status(token.code).json(token)
 
         } catch (error) {
             // res.send(error)
-            res.status(500).json({"error":error})
+            // res.status(500).json({"error":error})
+            res.send(error)
         }
         //     if (token.code == 200){
         //         res.status(token.code).json(token)
@@ -35,7 +36,8 @@ const authController = {
         try {
             const user = new User(req.body)
             const token = await authService.register(user)
-            res.status(token.code).json({"token":token})
+            // res.status(token.code).json({"token":token})
+            res.send({token})
         } catch (error) {
             res.send(error)
         }
@@ -48,7 +50,7 @@ const authController = {
         try {
             const employee = new Employee(req.body)
             const token = await authService.register(employee)
-            res.status(token.code).json({"token":token})
+            res.status(token.code).json({token})
         } catch (error) {
             res.send(error)
         }
