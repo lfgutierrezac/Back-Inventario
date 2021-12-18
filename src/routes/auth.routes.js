@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/auth.controller')
 const mail = require('../services/mail.service')
+const Auth = require('../middlewares/authentication')
 
 /**
  * @api {post} /register Registro de usuarios root
@@ -42,9 +43,9 @@ router.post('/login', authController.login)
  * @apiParam {password} password Contraseña del  empleado
  */
 // Register Employee
-router.post('/registerEmployee', authController.registerEmployee)
+router.post('/registerEmployee', Auth, authController.registerEmployee)
 
-router.get('/registerEmployee', authController.getEmployee)
+router.get('/registerEmployee', Auth, authController.getEmployee)
 
 // router.post('/login/email', async (req,res)=>{
 //     const data = await mail.send(

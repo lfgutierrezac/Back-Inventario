@@ -1,5 +1,5 @@
 const Category = require('../models/category')
- 
+  
 const categoryController = {
     newCategory:async function (req,res){
     try {
@@ -11,7 +11,7 @@ const categoryController = {
         // res.send(error)
         res.status(500).json({"error":error})
     }
-    },
+    }, 
     getCategory:async function (req,res){
         try {
             // const category = new Category(req.body)

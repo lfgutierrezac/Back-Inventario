@@ -19,7 +19,6 @@ const authController = {
                 '<b>¡Hola de nuevo! </b><br> Has iniciado sesión en tu cuenta de InStore<br /><br>------</br>')
 
         } catch (error) {
-            // res.send(error)
             // res.status(500).json({"error":error})
             res.send(error)
         }
@@ -41,7 +40,7 @@ const authController = {
         } catch (error) {
             res.send(error)
         }
-    },
+    }, 
     registerEmployee:async function (req,res){
         const errors = validationResult(req)
         if (!errors.isEmpty()) {
@@ -50,22 +49,25 @@ const authController = {
         try {
             const employee = new Employee(req.body)
             const token = await authService.register(employee)
-            res.status(token.code).json({"token":token})
+            res.status(token.code).json({"employee":token})
             await mail.send(
                 employee.email,'Nueva cuenta en InStore',
                 'Tu nueva cuenta ya está activa',
                 '<b>¡Bienvenido! </b><br> Han creado una nueva cuenta en InStore para ti<br /><br>------</br>')
 
             } catch (error) {
-            res.send(error)
+            // res.send(error)
+            res.status(500).json({"error":error})
         }
     },
     getEmployee:async function (req,res){
         try {
-            const employee = await Employee.find();
-            res.send(employee)
+            const employee = await Employee.find({user:req.body.user});
+            // res.send(employee)
+            res.status(200).json({"employees":employee})
         } catch (error) {
             res.send(error)
+            res.status(500).json({"error":error})
         }
     }
 }
